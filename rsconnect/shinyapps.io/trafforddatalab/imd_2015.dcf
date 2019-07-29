@@ -1,0 +1,13 @@
+name: imd_2015
+title: imd_2015
+username:
+account: trafforddatalab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1056180
+bundleId: 2273264
+url: https://trafforddatalab.shinyapps.io/imd_2015/
+when: 1564392335.11887
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: LICENSE|README.md|screenshot.png

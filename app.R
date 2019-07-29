@@ -5,7 +5,7 @@ library(shiny) ; library(tidyverse) ; library(sf) ; library(leaflet) ; library(h
 # Load data ---------------------------
 
 # IMD 2015 by LSOA (source: Department for Communities and Local Government)
-df <- read_csv("https://github.com/traffordDataLab/open_data/raw/master/imd_2015/IMD_2015_long.csv",
+df <- read_csv("data/IMD_2015_long.csv",
                col_types = cols(lsoa11cd = col_factor(NULL),
                                 measure = col_factor(NULL), 
                                 value = col_double(), 
@@ -14,10 +14,10 @@ df <- read_csv("https://github.com/traffordDataLab/open_data/raw/master/imd_2015
   rename(score = Score, rank = Rank, decile = Decile)
 
 # Lower-layer Super Output Area boundaries (source: ONS Open Geography Portal)
-lsoa <- st_read("https://www.traffordDataLab.io/spatial_data/lookups/lsoa_to_ward_best-fit_lookup.geojson")
+lsoa <- st_read("data/lsoa_to_ward_best-fit_lookup.geojson")
 
 # Local Authority boundaries (source: ONS Open Geography Portal)
-la <- st_read("https://www.traffordDataLab.io/spatial_data/local_authority/2016/gm_local_authority_generalised.geojson") %>% 
+la <- st_read("data/gm_local_authority_generalised.geojson") %>% 
   rename(lad16nm = area_name)
 
 ui <- bootstrapPage(
@@ -31,7 +31,8 @@ ui <- bootstrapPage(
                     tabPanel("Controls",
                              radioButtons(inputId = "domain", label = NULL,
                                           choices = c("Index of Multiple Deprivation", "Income", "Employment", "Education, Skills and Training", 
-                                                      "Health Deprivation and Disability", "Crime", "Barriers to Housing and Services", "Living Environment"),
+                                                      "Health Deprivation and Disability", "Crime", "Barriers to Housing and Services", "Living Environment",
+                                                      "Income Deprivation Affecting Children", "Income Deprivation Affecting Older People"),
                                           selected = "Index of Multiple Deprivation"),
                              hr(),
                              uiOutput("info")),
